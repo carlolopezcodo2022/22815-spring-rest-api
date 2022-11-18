@@ -17,7 +17,12 @@ public class UsersServiceImpl implements UsersService{
 	@Autowired
 	private UserRepository userRepository;
 	
+	//abren una conexion con la db
 	public Optional<Users> obtenerPorId(Long id) {
+		//si todo sale bien!!
+		//commit
+		//si existe alguna Exception 
+		//rollback
 		return this.userRepository.findById(id);
 	}
 }
