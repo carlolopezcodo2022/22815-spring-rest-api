@@ -29,7 +29,6 @@ import lombok.ToString;
 public class Ordenes {
 
 	@Id
-	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -52,4 +51,8 @@ public class Ordenes {
 	@ManyToOne
 	@JoinColumn(name = "cupones_id", referencedColumnName = "id",nullable = true)
 	private Cupones cupon;
+
+	public boolean isEstadoFinal() {
+		return getEstado().getEstadoFinal().equals(1);//esto puede estar en un enum de estados!!!!!!
+	}
 }

@@ -17,7 +17,6 @@ public class OrdenesServiceImpl implements OrdenService {
 	
 	@Override
 	public Ordenes save(Ordenes entity) {
-		
 		//alguna que otra valdacion!
 		
 		return this.repository.save(entity);
@@ -26,6 +25,11 @@ public class OrdenesServiceImpl implements OrdenService {
 	@Override
 	public Ordenes getById(Long id) {
 		return this.repository.findById(id).orElse(Ordenes.builder().build());
+	}
+
+	@Override
+	public void update(Ordenes ordenDB) {
+		this.repository.save(ordenDB);	
 	}
 
 }
