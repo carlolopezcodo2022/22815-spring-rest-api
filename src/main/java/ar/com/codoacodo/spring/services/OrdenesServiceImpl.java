@@ -32,4 +32,9 @@ public class OrdenesServiceImpl implements OrdenService {
 		this.repository.save(ordenDB);	
 	}
 
+	@Override
+	public void eliminar(Long id) {
+		this.repository.deleteById(id);		
+	}
+
 }

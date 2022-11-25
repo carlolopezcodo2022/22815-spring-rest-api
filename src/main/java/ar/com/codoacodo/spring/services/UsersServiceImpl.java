@@ -25,4 +25,9 @@ public class UsersServiceImpl implements UsersService{
 		//rollback
 		return this.userRepository.findById(id);
 	}
+
+	@Override
+	public Users findByName(String name) {
+		return this.userRepository.findByUsername(name);//ctrl+shit+i
+	}
 }

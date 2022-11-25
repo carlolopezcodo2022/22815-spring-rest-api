@@ -9,4 +9,6 @@ public interface OrdenService {
 	public Ordenes getById(Long id);
 
 	public void update(Ordenes ordenDB);
+
+	public void eliminar(Long id);
 }

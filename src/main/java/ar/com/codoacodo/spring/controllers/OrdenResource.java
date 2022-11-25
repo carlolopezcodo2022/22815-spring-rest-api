@@ -3,9 +3,12 @@ package ar.com.codoacodo.spring.controllers;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -98,5 +101,39 @@ public class OrdenResource {
 		
 		return ResponseEntity.ok(ordenDB);
 	}
+	
+	@GetMapping("/orden/{id}")
+	public ResponseEntity<Ordenes> get(
+			@PathVariable(name = "id", required = true) 
+			Long id
+		) {
+		
+		Ordenes orden = this.ordenService.getById(id);
+		
+		if(orden == null || orden.getId() == null) {
+			//NOT FOUND > 404
+			return ResponseEntity.notFound().build();
+		}
+		
+		//POST: 200 > OK
+		return ResponseEntity.ok(orden);
+	}
+	
+	@DeleteMapping("/orden/{id}")
+	public ResponseEntity<Ordenes> delete(
+			@PathVariable(name="id", required = true) Long id
+			) {
+		
+		//ya estoy dentro del metodo!!!!
+		try {
+			this.ordenService.eliminar(id);
+		}catch(RuntimeException re) {
+			System.out.println(re.getMessage());
+		}
+		
+		return ResponseEntity.ok(null);
+	}
+	
+	
 	
 }
