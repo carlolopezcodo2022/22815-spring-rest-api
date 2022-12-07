@@ -54,7 +54,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers(HttpMethod.GET,"/").permitAll()
 			.antMatchers(new String[]{"/auth/**"}).permitAll()
-			//TODO habilitar recursos de swagger
+			.antMatchers("/v2/api-docs","/configuration/**","/swagger*/**","/webjar/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			//exception handler > error

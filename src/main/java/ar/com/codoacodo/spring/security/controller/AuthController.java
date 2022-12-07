@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.codoacodo.spring.security.JwtProvider;
 import ar.com.codoacodo.spring.security.controller.dto.LoginRequestDto;
+import ar.com.codoacodo.spring.security.controller.dto.LoginResponseDto;
 
 @RestController
 public class AuthController {
@@ -24,7 +25,7 @@ public class AuthController {
 	private JwtProvider jwtProvider;
 	
 	@PostMapping(value="/auth/login",consumes = "application/json",produces = "application/json")
-	public ResponseEntity<String> login(
+	public ResponseEntity<LoginResponseDto> login(
 			@Valid @RequestBody LoginRequestDto loginReqDto
 		) {
 
@@ -35,6 +36,6 @@ public class AuthController {
 		
 		String jwtToken = this.jwtProvider.generateToken(authentication);
 		
-		return ResponseEntity.ok(jwtToken);
+		return ResponseEntity.ok(new LoginResponseDto(jwtToken));
 	}
 }
