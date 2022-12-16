@@ -2,6 +2,7 @@ package ar.com.codoacodo.spring.controllers;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -118,6 +119,12 @@ public class OrdenResource {
 		
 		//POST: 200 > OK
 		return ResponseEntity.ok(orden);
+	}
+	
+	@GetMapping(value="/orden",produces = "application/json")
+	public ResponseEntity<List<Ordenes>> findAll() {
+		//POST: 200 > OK
+		return ResponseEntity.ok(this.ordenService.findAll());
 	}
 	
 	@DeleteMapping("/orden/{id}")

@@ -1,5 +1,7 @@
 package ar.com.codoacodo.spring.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +39,8 @@ public class OrdenesServiceImpl implements OrdenService {
 		this.repository.deleteById(id);		
 	}
 
+	@Override
+	public List<Ordenes> findAll() {
+		return this.repository.findAll();
+	}
 }

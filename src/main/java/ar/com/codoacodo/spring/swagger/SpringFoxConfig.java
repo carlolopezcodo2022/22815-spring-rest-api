@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.builders.ResponseBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -32,7 +34,16 @@ public class SpringFoxConfig {
 				.paths(PathSelectors.any())
 				.build()
 				.securityContexts(securityContext())
-				.securitySchemes(securitySchemes())
+				.securitySchemes(securitySchemes())/*
+				.useDefaultResponseMessages(false)
+				.globalResponses(HttpMethod.GET, List.of(
+				    new ResponseBuilder().code("500")
+				        .description("500 message").build(),
+				    new ResponseBuilder().code("403")
+				        .description("Forbidden!!!!!").build(),
+			        new ResponseBuilder().code("401")
+				        .description("NA NO TENES PERMISOS").build()
+				))*/
 				;
 	}
 	
